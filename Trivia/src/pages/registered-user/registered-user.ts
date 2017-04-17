@@ -29,5 +29,7 @@ export class RegisteredUser {
     });
     toast.present();
   }
+
+  
   
 }

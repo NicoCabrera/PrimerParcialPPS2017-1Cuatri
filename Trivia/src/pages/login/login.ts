@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { RegisteredUser } from "../registered-user/registered-user";
+import { About } from "../about/about";
 
 @Component({
   selector: 'login-home',
@@ -36,5 +37,9 @@ export class LoginPage implements OnInit {
       position: 'middle'
     });
     toast.present();
+  }
+
+  showAboutPage():void{
+    this.navCtrl.push(About);
   }
 }
