@@ -1,0 +1,24 @@
+<!--
+  Generated template for the RegisteredUser page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Bienvenido</ion-title>
+    <ion-buttons right>
+      <button ion-button icon-only end>
+        <ion-icon name="person"></ion-icon>
+        <ion-label>{{username}}</ion-label>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button full (click)="showInProgressMessage()">Comenzar el juego</button>
+  <button ion-button full (click)="showInProgressMessage()">Mejores puntajes</button>
+  <button ion-button full (click)="showInProgressMessage()">About Developer</button>
+</ion-content>

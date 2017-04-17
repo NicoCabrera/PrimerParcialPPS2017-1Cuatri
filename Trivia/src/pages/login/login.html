@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>
+      {{title}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="form" >
+    <ion-list>
+      <ion-item>
+        <ion-label floating>Nombre de Usuario</ion-label>
+        <ion-input type="text" formControlName="username" maxlength="30"></ion-input>
+      </ion-item>
+      <ion-label color="danger" *ngIf="!form.valid && form.touched">Ingrese un nombre de usuario válido</ion-label>
+    </ion-list>
+    <button ion-button full [disabled]="!form.valid" (click)="signIn()">Ingresar</button>
+    <button ion-button color="secondary" full (click)="register()">Registrarse</button>
+  </form>
+</ion-content>
