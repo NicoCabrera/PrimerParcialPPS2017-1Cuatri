@@ -1,0 +1,15 @@
+<ion-header>
+</ion-header>
+<ion-content padding>
+    <ion-card>
+        {{question.text}}
+    </ion-card>
+    <button [disabled]="isDisabled" (click)="sendAnswer(answer)" ion-button block color="primary" *ngFor="let answer of answers">{{answer.text}}</button>
+
+    <div *ngIf="showWrongAnswerMessage">
+        Incorrecto!
+    </div>
+    <div *ngIf="showRightAnswerMessage">
+        Correcto!
+    </div>
+</ion-content>
