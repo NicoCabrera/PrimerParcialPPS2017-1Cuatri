@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
 
   form: FormGroup;
   title: string = 'Trivia MD: Login';
+  hideSpinner:boolean = true;
   constructor(public navCtrl: NavController, private fb: FormBuilder, private toastCtrl: ToastController, private af: AngularFire) {
   }
 
@@ -29,6 +30,7 @@ export class LoginPage implements OnInit {
   }
 
   signIn() {
+    this.hideSpinner = false;
     let message: string = "";
 
     this.af.auth.login({
@@ -39,8 +41,11 @@ export class LoginPage implements OnInit {
         provider: AuthProviders.Password,
         method: AuthMethods.Password,
       }).then(() => {
+        this.hideSpinner = true;
         this.navCtrl.push(RegisteredUser, { email: this.form.get("email").value });
+
       }).catch((error) => {
+        this.hideSpinner = true;
         message = "Error: ";
         switch (error['code']) {
           case 'auth/user-not-found':

@@ -18,11 +18,12 @@ export class SignUp implements OnInit {
   form: FormGroup;
   users$: FirebaseListObservable<any>;
   showUserExistErrorMessage: boolean = false;
-
+  hideSpinner:boolean=true;
+  disabledFormControl:boolean=false;
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ["", [Validators.required, Validators.maxLength(35)]],
-      password: ["", [Validators.required]]
+      password: ["", [Validators.required]],
     });
   }
 
@@ -35,9 +36,11 @@ export class SignUp implements OnInit {
       email: this.form.get('email').value,
       password: this.form.get('password').value
     };
+    this.changeStateControls();
     this.af.auth.createUser(credentials)
       .then(() => {
         alert("El usuario fué creado exitosamente");
+        this.hideSpinner = true;
       })
       .catch((error) => {
         {
@@ -59,10 +62,12 @@ export class SignUp implements OnInit {
             default:
               message += 'Desconocido.';
           }
+          this.changeStateControls();
           this.showErrorMessage(message);
         }
       });
   }
+
   showErrorMessage(message: string): void {
     let toast = this.toastCtrl.create({
       message: message,
@@ -71,4 +76,10 @@ export class SignUp implements OnInit {
     });
     toast.present();
   }
+
+  changeStateControls(){
+    this.hideSpinner = !this.hideSpinner;
+    this.disabledFormControl = !this.disabledFormControl;
+  }
+
 }
