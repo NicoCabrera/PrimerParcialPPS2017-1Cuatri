@@ -6,13 +6,13 @@
 -->
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title><ion-icon name="person"></ion-icon> {{email}}</ion-title>
+    <ion-title><ion-icon name="person"></ion-icon> {{username}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
   <button ion-button full (click)="showQuestionsPage()">Comenzar</button>
-  <button ion-button full (click)="showInProgressMessage()">Mejores puntajes</button>
-  <button ion-button full (click)="logOut()">Desloguearse</button>
+  <button ion-button full (click)="showInProgressMessage()">Ver las últimas respuestas ingresadas</button>
+  <button ion-button full (click)="logOutOnClick()">Desloguearse</button>
 </ion-content>

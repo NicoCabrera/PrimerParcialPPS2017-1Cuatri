@@ -17,8 +17,12 @@
   <form [formGroup]="form">
     <ion-list>
       <ion-item>
+        <ion-label floating>Nombre de Usuario</ion-label>
+        <ion-input type="text" formControlName="username" maxlength="35" [disabled]="disabledFormControl"></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label floating>E-mail</ion-label>
-        <ion-input type="text" formControlName="email" maxlength="35" [disabled]="disabledFormControl"></ion-input>
+        <ion-input type="email" formControlName="email" maxlength="35" [disabled]="disabledFormControl"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label floating>Contraseña</ion-label>

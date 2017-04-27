@@ -3,12 +3,14 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
-import { AngularFireModule ,AuthProviders, AuthMethods} from 'angularfire2';
+import { AngularFireModule } from 'angularfire2';
+
 
 import { MyApp } from './app.component';
 import { Questions } from "../pages/questions/questions";
 import { LoginModule } from "../pages/login/login.module";
 
+import { AuthService } from '../providers/auth-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCDJ2a9_c_HR4D4jWIFH0ANkLtiOrrF08w",
@@ -19,10 +21,7 @@ export const firebaseConfig = {
   messagingSenderId: "87703710834"
 };
 
-const myFirebaseAuthConfig = {
-  provider: AuthProviders.Google,
-  method: AuthMethods.Redirect
-};
+
 
 @NgModule({
   declarations: [
@@ -33,7 +32,7 @@ const myFirebaseAuthConfig = {
     LoginModule,
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -43,7 +42,8 @@ const myFirebaseAuthConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AuthService
   ]
 })
 export class AppModule { }

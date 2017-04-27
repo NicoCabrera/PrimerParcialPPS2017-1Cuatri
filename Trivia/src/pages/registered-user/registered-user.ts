@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
 import { Questions } from "../questions/questions";
-import { AngularFire } from 'angularfire2';
+import { AuthService } from "../../providers/auth-service";
 /**
  * Generated class for the RegisteredUser page.
  *
@@ -14,13 +14,13 @@ import { AngularFire } from 'angularfire2';
   templateUrl: 'registered-user.html',
 })
 export class RegisteredUser {
-  email:string;
+  username:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl:ToastController,private af:AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl:ToastController,private _auth: AuthService) {
   }
 
   ionViewDidLoad() {
-    this.email = this.navParams.get("email");
+      this.username = "";
   }
 
   showInProgressMessage():void{
@@ -36,13 +36,9 @@ export class RegisteredUser {
     this.navCtrl.push(Questions);
   }
 
-  logOut()
-  {
-    this.af.auth.logout().then(()=>{
-      alert("Usuario deslogueado");
-    }).catch(error=>{
-      alert("Error desconocido");
-    });
-
+  logOutOnClick()
+  { 
+    this.navCtrl.popToRoot();
+    this._auth.signOut();
   }
 }

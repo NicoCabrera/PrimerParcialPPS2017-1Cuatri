@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { RegisteredUser } from "../registered-user/registered-user";
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import 'rxjs/add/operator/map'; import 'rxjs/add/operator/filter';
@@ -18,12 +19,13 @@ export class SignUp implements OnInit {
   form: FormGroup;
   users$: FirebaseListObservable<any>;
   showUserExistErrorMessage: boolean = false;
-  hideSpinner:boolean=true;
-  disabledFormControl:boolean=false;
+  hideSpinner: boolean = true;
+  disabledFormControl: boolean = false;
   ngOnInit(): void {
     this.form = this.fb.group({
       email: ["", [Validators.required, Validators.maxLength(35)]],
       password: ["", [Validators.required]],
+      username: ["", [Validators.required]]
     });
   }
 
@@ -39,8 +41,7 @@ export class SignUp implements OnInit {
     this.changeStateControls();
     this.af.auth.createUser(credentials)
       .then(() => {
-        alert("El usuario fué creado exitosamente");
-        this.hideSpinner = true;
+        this.saveUserDataAndGoAhead(credentials);
       })
       .catch((error) => {
         {
@@ -77,9 +78,23 @@ export class SignUp implements OnInit {
     toast.present();
   }
 
-  changeStateControls(){
+  changeStateControls() {
     this.hideSpinner = !this.hideSpinner;
     this.disabledFormControl = !this.disabledFormControl;
+  }
+
+  saveUserDataAndGoAhead(credentials) {
+    this.af.database.object("/users/" + this.af.auth.getAuth().uid).set({
+      username: this.form.get('username').value,
+      password: credentials.password,
+      email: credentials.email,
+    }).then(() => {
+      this.hideSpinner = true;
+      this.navCtrl.push(RegisteredUser, { email: this.form.get("username").value });
+    }).catch((error)=>{
+        alert("Error.El usuario no ha sido registrado.")
+        this.changeStateControls();
+    });
   }
 
 }

@@ -4,7 +4,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { About } from "../about/about";
 import { SignUp } from "../sign-up/sign-up";
 import { RegisteredUser } from "../registered-user/registered-user";
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+
+import { AuthService } from '../../providers/auth-service';
 
 @IonicPage({
   name: 'login'
@@ -17,8 +18,8 @@ export class LoginPage implements OnInit {
 
   form: FormGroup;
   title: string = 'Trivia MD: Login';
-  hideSpinner:boolean = true;
-  constructor(public navCtrl: NavController, private fb: FormBuilder, private toastCtrl: ToastController, private af: AngularFire) {
+  hideSpinner: boolean = true;
+  constructor(public navCtrl: NavController, private fb: FormBuilder, private toastCtrl: ToastController,private _auth: AuthService) {
   }
 
   //Methods
@@ -33,16 +34,10 @@ export class LoginPage implements OnInit {
     this.hideSpinner = false;
     let message: string = "";
 
-    this.af.auth.login({
-      email: this.form.get('email').value,
-      password: this.form.get('password').value,
-    },
-      {
-        provider: AuthProviders.Password,
-        method: AuthMethods.Password,
-      }).then(() => {
+    this._auth.signIn(this.form.get('email').value,this.form.get('password').value)
+    .then(() => {
         this.hideSpinner = true;
-        this.navCtrl.push(RegisteredUser, { email: this.form.get("email").value });
+        this.navCtrl.push(RegisteredUser, { username: name });
 
       }).catch((error) => {
         this.hideSpinner = true;
@@ -86,4 +81,5 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
+
 }
