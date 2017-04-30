@@ -30,6 +30,10 @@ export class LoginPage implements OnInit {
     });
   }
 
+  fakeSignIn(){
+    this.hideSpinner = true;
+    this.navCtrl.push(RegisteredUser, {username:"Nicolas"});
+  }
   signIn() {
     this.hideSpinner = false;
     let message: string = "";
