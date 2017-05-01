@@ -5,7 +5,10 @@ import { About } from "../about/about";
 import { SignUp } from "../sign-up/sign-up";
 import { RegisteredUser } from "../registered-user/registered-user";
 
+
 import { AuthService } from '../../providers/auth-service';
+
+import { Result } from "../result/result";
 
 @IonicPage({
   name: 'login'
@@ -84,6 +87,19 @@ export class LoginPage implements OnInit {
       position: "middle"
     });
     toast.present();
+  }
+
+
+  goToResult(){
+    let data = [];
+    data.push({answer:"asdasd", text:"¿asdasdasdasd asda?"});
+    data.push({answer:"werwerwe", text:"¿aerwerwer?"});
+    data.push({answer:"kikikikik", text:"¿kikik ik?"});
+
+    let correctAnswers = 2;
+    let incorrectAnswers = 1;
+    this.navCtrl.push(Result,{results:data,correctAnswers:correctAnswers,incorrectAnswers:incorrectAnswers});
+
   }
 
 }

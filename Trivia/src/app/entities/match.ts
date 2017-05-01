@@ -1,6 +1,10 @@
 import { Question } from "./question";
 
-export class Match{
-    username:string;
-    results:{text:string,answer:string}[];
+export class Match {
+   
+    constructor(public results:any[],public username:string) {
+        
+    }
+
+
 }

@@ -3,12 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 import { Question } from "../../app/entities/question";
 import { Answer } from "../../app/entities/answer";
 import { AngularFire, FirebaseListObservable } from "angularfire2";
-/**
- * Generated class for the Questions page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { Result } from "../result/result";
+
+
+
 @Component({
   selector: 'page-questions',
   templateUrl: 'questions.html',
@@ -21,6 +19,20 @@ export class Questions implements OnInit {
   isDisabled: boolean;
   showWrongAnswerMessage: boolean;
   showRightAnswerMessage: boolean;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  results;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire) {
+    this.isDisabled = false;
+    this.showWrongAnswerMessage = false;
+    this.showRightAnswerMessage = false;
+    this.question = new Question("");
+    this.answers = [];
+    this.results = [];
+    this.correctAnswers = 0;
+    this.incorrectAnswers = 0;
+  }
 
   ngOnInit(): void {
     this.af.database.list("questions")
@@ -37,36 +49,41 @@ export class Questions implements OnInit {
       this.answers = [];
       for (let x in this.question.answers)
         this.answers.push(this.question.answers[x])
-    }else{
-      console.log("No hay más preguntas.");
+    } else {
+      this.continueToResultPage();
     }
 
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire) {
-    this.isDisabled = false;
-    this.showWrongAnswerMessage = false;
-    this.showRightAnswerMessage = false;
-    this.question = new Question("");
-    this.answers = [];
-  }
-
-  ionViewDidLoad() {
-
-  }
   sendAnswer(answer) {
     this.isDisabled = !this.isDisabled;
-    if (answer.isRight)
+    if (answer.isRight) {
       this.showRightAnswerMessage = true;
-    else
+      this.correctAnswers++;
+    }
+    else {
       this.showWrongAnswerMessage = true;
+      this.incorrectAnswers++;
+    }
+    this.results.push({
+      answer: answer.text,
+      text: this.question.text
+    });
+
     setTimeout(() => {
       this.isDisabled = false;
       this.showWrongAnswerMessage = false;
       this.showRightAnswerMessage = false;
       this.setQuestionData();
-    },3000);
+    }, 3000);
   }
 
+  continueToResultPage() {
+    this.navCtrl.push(Result, {results:this.results, correctAnswers: this.correctAnswers, incorrectAnswers: this.incorrectAnswers});
+  }
+
+  ionViewDidLoad() {
+
+  }
 }
 
