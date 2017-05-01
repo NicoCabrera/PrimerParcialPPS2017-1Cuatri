@@ -5,7 +5,7 @@ import { Answer } from "../../app/entities/answer";
 import { AngularFire } from "angularfire2";
 import { Result } from "../result/result";
 import { Vibration } from "@ionic-native/vibration";
-
+import { NativeAudio } from "@ionic-native/native-audio";
 
 
 @Component({
@@ -25,7 +25,7 @@ export class Questions implements OnInit {
   results;
   username:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire,private vibration:Vibration) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire,private vibration:Vibration,private nativeAudio:NativeAudio) {
     this.isDisabled = false;
     this.showWrongAnswerMessage = false;
     this.showRightAnswerMessage = false;
@@ -43,6 +43,8 @@ export class Questions implements OnInit {
         this.questions = questions;
         this.setQuestionData();
       });
+    this.nativeAudio.preloadSimple("correct","assets/sound/correctSound.mp3");
+    this.nativeAudio.preloadSimple("error","assets/sound/errorSound.mp3");
   }
 
   setQuestionData() {
@@ -92,10 +94,12 @@ export class Questions implements OnInit {
 
   vibrateOnce(){
     this.vibration.vibrate(1000);
+    this.nativeAudio.play("correct").catch(error=>alert(error));
   }
 
   vibrateTwice(){
     this.vibration.vibrate([1000,1000,1000]);
+    this.nativeAudio.play("error").catch(error=>alert(error));
   }
 }
 

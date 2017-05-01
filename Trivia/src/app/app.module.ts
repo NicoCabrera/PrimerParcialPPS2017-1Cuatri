@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
 import { Vibration } from "@ionic-native/vibration";
+import { NativeAudio } from "@ionic-native/native-audio";
 
 import { MyApp } from './app.component';
 import { Questions } from "../pages/questions/questions";
@@ -49,6 +50,7 @@ export const firebaseConfig = {
     StatusBar,
     SplashScreen,
     Vibration,
+    NativeAudio,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService
   ]

@@ -47,7 +47,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
-    <preference name="ShowSplashScreenSpinner" value="false"/>
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <feature name="StatusBar">
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
@@ -58,4 +58,5 @@
     <plugin name="cordova-plugin-device" spec="1.1.4" />
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
     <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
+    <plugin name="cordova-plugin-nativeaudio" spec="~3.0.9" />
 </widget>
