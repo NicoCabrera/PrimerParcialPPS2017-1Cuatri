@@ -14,8 +14,14 @@
 
 
 <ion-content padding>
-  <div *ngFor="let match of matchesMock;let i = index">
-      {{match.username}}
-      {{match.results}}
-  </div>
+  <ion-card *ngFor="let match of matches">
+    <ion-card-header>
+      {{"Usuario: " + match.username}}
+    </ion-card-header>
+
+    <ion-list *ngFor="let question of match.results">
+      <ion-item>{{question.text}}</ion-item>
+      <ion-item>{{question.answer}}</ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

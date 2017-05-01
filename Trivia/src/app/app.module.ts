@@ -10,6 +10,7 @@ import { MyApp } from './app.component';
 import { Questions } from "../pages/questions/questions";
 import { LoginModule } from "../pages/login/login.module";
 import { Result } from "../pages/result/result";
+import { HistoricalResults } from "../pages/historical-results/historical-results";  
 
 import { AuthService } from '../providers/auth-service';
 
@@ -28,7 +29,8 @@ export const firebaseConfig = {
   declarations: [
     MyApp,
     Questions,
-    Result
+    Result,
+    HistoricalResults
   ],
   imports: [
     LoginModule,
@@ -40,7 +42,8 @@ export const firebaseConfig = {
   entryComponents: [
     MyApp,
     Questions,
-    Result
+    Result,
+    HistoricalResults
   ],
   providers: [
     StatusBar,

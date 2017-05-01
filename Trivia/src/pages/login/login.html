@@ -19,7 +19,7 @@
       </ion-item>
     </ion-list>
     <div [hidden]="!hideSpinner">
-      <button ion-button full [disabled]="!form.valid" (click)="fakeSignIn()">Ingresar</button>
+      <button ion-button full [disabled]="!form.valid" (click)="signIn()">Ingresar</button>
     </div>
     <div [hidden]="hideSpinner">
       <div>
@@ -36,9 +36,4 @@
       <button ion-button full (click)="showAboutPage()">About</button>
     </div>
   </form>
-  
-
-
-  <!--Prueba  -->
-  <button ion-button (click)="goToResult()">Ir a resultados</button>
 </ion-content>

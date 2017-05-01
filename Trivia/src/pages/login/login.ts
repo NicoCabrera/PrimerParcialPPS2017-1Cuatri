@@ -9,6 +9,8 @@ import { RegisteredUser } from "../registered-user/registered-user";
 import { AuthService } from '../../providers/auth-service';
 
 import { Result } from "../result/result";
+import { HistoricalResults } from "../historical-results/historical-results";
+import { AngularFire } from "angularfire2";
 
 @IonicPage({
   name: 'login'
@@ -22,7 +24,7 @@ export class LoginPage implements OnInit {
   form: FormGroup;
   title: string = 'Trivia MD: Login';
   hideSpinner: boolean = true;
-  constructor(public navCtrl: NavController, private fb: FormBuilder, private toastCtrl: ToastController,private _auth: AuthService) {
+  constructor(public navCtrl: NavController, private fb: FormBuilder, private toastCtrl: ToastController,private _auth: AuthService, private af:AngularFire) {
   }
 
   //Methods
@@ -33,19 +35,18 @@ export class LoginPage implements OnInit {
     });
   }
 
-  fakeSignIn(){
-    this.hideSpinner = true;
-    this.navCtrl.push(RegisteredUser, {username:"Nicolas"});
-  }
   signIn() {
     this.hideSpinner = false;
     let message: string = "";
 
     this._auth.signIn(this.form.get('email').value,this.form.get('password').value)
     .then(() => {
-        this.hideSpinner = true;
-        this.navCtrl.push(RegisteredUser, { username: name });
-
+        this.af.database.object("users/"+ this._auth.auth$.getAuth().uid + "/username")
+        .subscribe(username=> {
+          this.hideSpinner = true;
+          this.navCtrl.push(RegisteredUser, { username: username})
+        });
+        
       }).catch((error) => {
         this.hideSpinner = true;
         message = "Error: ";
@@ -80,6 +81,7 @@ export class LoginPage implements OnInit {
   showAboutPage(): void {
     this.navCtrl.push(About);
   }
+
   showErrorMessage(message: string): void {
     let toast = this.toastCtrl.create({
       message: message,
@@ -88,18 +90,4 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-
-
-  goToResult(){
-    let data = [];
-    data.push({answer:"asdasd", text:"¿asdasdasdasd asda?"});
-    data.push({answer:"werwerwe", text:"¿aerwerwer?"});
-    data.push({answer:"kikikikik", text:"¿kikik ik?"});
-
-    let correctAnswers = 2;
-    let incorrectAnswers = 1;
-    this.navCtrl.push(Result,{results:data,correctAnswers:correctAnswers,incorrectAnswers:incorrectAnswers});
-
-  }
-
 }

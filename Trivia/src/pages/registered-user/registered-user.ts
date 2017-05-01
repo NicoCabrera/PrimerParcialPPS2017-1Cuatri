@@ -2,13 +2,18 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
 import { Questions } from "../questions/questions";
 import { AuthService } from "../../providers/auth-service";
+import { HistoricalResults } from "../historical-results/historical-results";
 /**
  * Generated class for the RegisteredUser page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+@IonicPage(
+  {
+    name:'registered-users'
+  }
+)
 @Component({
   selector: 'page-registered-user',
   templateUrl: 'registered-user.html',
@@ -17,10 +22,10 @@ export class RegisteredUser {
   username:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl:ToastController,private _auth: AuthService) {
+    this.username = this.navParams.get("username").$value;
   }
 
   ionViewDidLoad() {
-      this.username = "";
   }
 
   showInProgressMessage():void{
@@ -33,7 +38,11 @@ export class RegisteredUser {
   }
 
   showQuestionsPage(){
-    this.navCtrl.push(Questions);
+    this.navCtrl.push(Questions, {username: this.username});
+  }
+
+  showHistoricalResults(){
+    this.navCtrl.push(HistoricalResults);
   }
 
   logOutOnClick()

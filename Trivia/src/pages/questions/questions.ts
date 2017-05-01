@@ -2,7 +2,7 @@ import { Component, NgZone, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Question } from "../../app/entities/question";
 import { Answer } from "../../app/entities/answer";
-import { AngularFire, FirebaseListObservable } from "angularfire2";
+import { AngularFire } from "angularfire2";
 import { Result } from "../result/result";
 
 
@@ -22,6 +22,7 @@ export class Questions implements OnInit {
   correctAnswers: number;
   incorrectAnswers: number;
   results;
+  username:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire) {
     this.isDisabled = false;
@@ -79,11 +80,11 @@ export class Questions implements OnInit {
   }
 
   continueToResultPage() {
-    this.navCtrl.push(Result, {results:this.results, correctAnswers: this.correctAnswers, incorrectAnswers: this.incorrectAnswers});
+    this.navCtrl.push(Result, {results:this.results, correctAnswers: this.correctAnswers, incorrectAnswers: this.incorrectAnswers, username:this.username});
   }
 
   ionViewDidLoad() {
-
+    this.username = this.navParams.get("username");
   }
 }
 
