@@ -4,6 +4,7 @@ import { Question } from "../../app/entities/question";
 import { Answer } from "../../app/entities/answer";
 import { AngularFire } from "angularfire2";
 import { Result } from "../result/result";
+import { Vibration } from "@ionic-native/vibration";
 
 
 
@@ -24,7 +25,7 @@ export class Questions implements OnInit {
   results;
   username:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private zone: NgZone, private af: AngularFire,private vibration:Vibration) {
     this.isDisabled = false;
     this.showWrongAnswerMessage = false;
     this.showRightAnswerMessage = false;
@@ -60,10 +61,12 @@ export class Questions implements OnInit {
     this.isDisabled = !this.isDisabled;
     if (answer.isRight) {
       this.showRightAnswerMessage = true;
+      this.vibrateOnce();
       this.correctAnswers++;
     }
     else {
       this.showWrongAnswerMessage = true;
+      this.vibrateTwice();
       this.incorrectAnswers++;
     }
     this.results.push({
@@ -85,6 +88,14 @@ export class Questions implements OnInit {
 
   ionViewDidLoad() {
     this.username = this.navParams.get("username");
+  }
+
+  vibrateOnce(){
+    this.vibration.vibrate(1000);
+  }
+
+  vibrateTwice(){
+    this.vibration.vibrate([1000,1000,1000]);
   }
 }
 

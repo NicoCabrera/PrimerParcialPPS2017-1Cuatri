@@ -4,7 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
-
+import { Vibration } from "@ionic-native/vibration";
 
 import { MyApp } from './app.component';
 import { Questions } from "../pages/questions/questions";
@@ -48,6 +48,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
+    Vibration,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService
   ]
