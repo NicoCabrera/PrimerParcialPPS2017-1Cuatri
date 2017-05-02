@@ -5,26 +5,50 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
+import { AboutPage } from '../pages/about-page/about-page';
+import { SignUpPage } from "../pages/sign-up-page/sign-up-page";
+import { RegisteredUserPage } from "../pages/registered-user-page/registered-user-page";
+
+import { AngularFireModule } from 'angularfire2';
+import { AuthService } from '../providers/auth-service';
+
+export const firebaseConfig = {
+  apiKey: "AIzaSyCAHVBAzEAetcrhm5vlUYPsoAL2u2PyfzM",
+  authDomain: "rockpaperscissors-d189d.firebaseapp.com",
+  databaseURL: "https://rockpaperscissors-d189d.firebaseio.com",
+  projectId: "rockpaperscissors-d189d",
+  storageBucket: "rockpaperscissors-d189d.appspot.com",
+  messagingSenderId: "929387629981"
+};
+
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    LoginPage,
+    AboutPage,
+    SignUpPage,
+    RegisteredUserPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseConfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    LoginPage,
+    AboutPage,
+    SignUpPage,
+    RegisteredUserPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    AuthService,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
