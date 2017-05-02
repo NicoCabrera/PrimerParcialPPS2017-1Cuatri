@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
+import { MatchPage } from "../match-page/match-page";
 
 @IonicPage()
 @Component({
@@ -27,8 +28,8 @@ export class RegisteredUserPage {
     toast.present();
   }
 
-  showQuestionsPage(){
-    
+  showMatchPage(){
+    this.navCtrl.push(MatchPage);
   }
 
   showHistoricalResults(){

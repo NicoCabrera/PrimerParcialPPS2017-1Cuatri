@@ -31,6 +31,10 @@ export class LoginPage implements OnInit{
     });
   }
 
+
+  fakeSignIn(){
+    this.navCtrl.push(RegisteredUserPage,{username:"Fake user"});
+  }
   signIn() {
     this.hideSpinner = false;
     let message: string = "";

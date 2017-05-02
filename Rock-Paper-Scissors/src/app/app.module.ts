@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { AboutPage } from '../pages/about-page/about-page';
 import { SignUpPage } from "../pages/sign-up-page/sign-up-page";
 import { RegisteredUserPage } from "../pages/registered-user-page/registered-user-page";
+import { MatchPage } from "../pages/match-page/match-page";
 
 import { AngularFireModule } from 'angularfire2';
 import { AuthService } from '../providers/auth-service';
@@ -29,7 +30,8 @@ export const firebaseConfig = {
     LoginPage,
     AboutPage,
     SignUpPage,
-    RegisteredUserPage
+    RegisteredUserPage,
+    MatchPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ export const firebaseConfig = {
     LoginPage,
     AboutPage,
     SignUpPage,
-    RegisteredUserPage
+    RegisteredUserPage,
+    MatchPage
   ],
   providers: [
     StatusBar,

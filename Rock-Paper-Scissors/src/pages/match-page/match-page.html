@@ -1,0 +1,13 @@
+<ion-header>
+
+</ion-header>
+
+
+<ion-content padding>
+
+<button ion-button (click)="setUserChosenOption(myOptions.Rock)" [disabled]="disabledControl">Piedra</button>
+<button ion-button (click)="setUserChosenOption(myOptions.Paper)" [disabled]="disabledControl">Papel</button>
+<button ion-button (click)="setUserChosenOption(myOptions.Scissor)" [disabled]="disabledControl">Tijera</button>
+<button ion-button color="secondary" (click)="playMatch()" [disabled]="disabledControl">Listo</button>
+
+</ion-content>
