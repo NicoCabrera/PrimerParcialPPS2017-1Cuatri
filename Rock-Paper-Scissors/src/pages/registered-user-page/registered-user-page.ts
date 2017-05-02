@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
-import { Questions } from "../questions/questions";
 import { AuthService } from "../../providers/auth-service";
 
-@IonicPage(
-  {
-    name:'registered-users'
-  }
-)
+@IonicPage()
 @Component({
   selector: 'page-registered-user',
   templateUrl: 'registered-user-page.html',
@@ -20,6 +15,7 @@ export class RegisteredUserPage {
   }
 
   ionViewDidLoad() {
+    
   }
 
   showInProgressMessage():void{
@@ -32,7 +28,7 @@ export class RegisteredUserPage {
   }
 
   showQuestionsPage(){
-    this.navCtrl.push(Questions, {username: this.username});
+    
   }
 
   showHistoricalResults(){

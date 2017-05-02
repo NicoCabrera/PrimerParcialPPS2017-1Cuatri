@@ -89,8 +89,11 @@ export class SignUp implements OnInit {
       password: credentials.password,
       email: credentials.email,
     }).then(() => {
+      let username = {
+        $value: this.form.get("username").value
+      };
       this.hideSpinner = true;
-      this.navCtrl.push(RegisteredUser, { email: this.form.get("username").value });
+      this.navCtrl.push(RegisteredUser, { username: username });
     }).catch((error)=>{
         alert("Error.El usuario no ha sido registrado.")
         this.changeStateControls();
