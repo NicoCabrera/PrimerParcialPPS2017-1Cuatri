@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Options, MatchResult, Game } from "../../app/entities/game";
+import { AngularFire } from "angularfire2";
+import { Match } from "../../app/entities/match";
 
 
 @IonicPage()
@@ -12,14 +15,16 @@ export class MatchPage {
   userChosenOption: Options;
   computerRandomOption: Options;
   disabledControl: boolean;
+  match: Match;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private af: AngularFire) {
     this.userChosenOption = Options.Scissor;
     this.disabledControl = false;
+    this.match = new Match();
   }
 
   ionViewDidLoad() {
-
+    this.match.username = "Username x";
   }
 
   playMatch() {
@@ -51,14 +56,38 @@ export class MatchPage {
         break;
     }
 
-    this.disabledControl = !this.disabledControl;
-
     console.log("EL usuario elige: " +
       Options[this.userChosenOption] +
       ". La máquina elige: " +
       Options[this.computerRandomOption] +
       ". Resultado: " + MatchResult[result]);
+
+    this.saveGame(result);
+
+    this.disabledControl = !this.disabledControl;
   }
+
+
+  saveGame(result) {
+    let game: Game = new Game();
+    game.computerRandomOption = this.computerRandomOption;
+    game.userChosenOption = this.userChosenOption;
+    game.result = result;
+    this.match.games.push(game);
+
+    if(this.match.games.length === 4){
+      let date = new Date();
+      this.match.date = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
+      console.log("Fin del Juego");
+      console.log(this.match);
+      this.af.database.list('matches')
+                      .push(this.match)
+                      .catch((error)=>console.log(error));
+                      
+    }
+      
+  }
+
 
   getMatchResult(): MatchResult {
     let rv: MatchResult;
@@ -85,14 +114,4 @@ export class MatchPage {
   }
 }
 
-enum Options {
-  Rock = 0,
-  Paper,
-  Scissor
-}
 
-enum MatchResult {
-  Lose = -1,
-  Draw,
-  Win
-}
