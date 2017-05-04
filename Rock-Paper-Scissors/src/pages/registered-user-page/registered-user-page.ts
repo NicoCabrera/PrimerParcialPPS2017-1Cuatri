@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
 import { AuthService } from "../../providers/auth-service";
 import { MatchPage } from "../match-page/match-page";
+import { HistoricalResultsPage } from "../historical-results-page/historical-results-page";
 
 @IonicPage()
 @Component({
@@ -29,11 +30,11 @@ export class RegisteredUserPage {
   }
 
   showMatchPage(){
-    this.navCtrl.push(MatchPage);
+    this.navCtrl.push(MatchPage,{username:this.username});
   }
 
   showHistoricalResults(){
-    /*this.navCtrl.push(HistoricalResults);*/
+    this.navCtrl.push(HistoricalResultsPage);
   }
 
   logOutOnClick()

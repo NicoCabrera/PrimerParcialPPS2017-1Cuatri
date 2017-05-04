@@ -10,9 +10,6 @@ import { HistoricalResults } from "../historical-results/historical-results";
  * on Ionic pages and navigation.
  */
 @IonicPage(
-  {
-    name:'registered-users'
-  }
 )
 @Component({
   selector: 'page-registered-user',
@@ -27,7 +24,7 @@ export class RegisteredUser {
 
   ionViewDidLoad() {
   }
-
+  
   showInProgressMessage():void{
     let toast = this.toastCtrl.create({
       message: 'Work in progress',

@@ -16,15 +16,19 @@ export class MatchPage {
   computerRandomOption: Options;
   disabledControl: boolean;
   match: Match;
+  winCounter:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private af: AngularFire) {
     this.userChosenOption = Options.Scissor;
     this.disabledControl = false;
     this.match = new Match();
+    this.winCounter = 0;
   }
 
   ionViewDidLoad() {
-    this.match.username = "Username x";
+    
+    this.match.username = this.navParams.get("username");
+    console.log(this.match.username);
   }
 
   playMatch() {
@@ -45,9 +49,11 @@ export class MatchPage {
     switch (result) {
       case MatchResult.Lose:
         console.log("Perdiste");
+        this.winCounter--;
         break;
       case MatchResult.Win:
         console.log("Ganaste");
+        this.winCounter++;
         break;
       case MatchResult.Draw:
         console.log("Empate");
@@ -75,19 +81,39 @@ export class MatchPage {
     game.result = result;
     this.match.games.push(game);
 
-    if(this.match.games.length === 4){
+    if (this.match.games.length === 4) {
       let date = new Date();
       this.match.date = date.getDay() + "/" + date.getMonth() + "/" + date.getFullYear();
+      this.setMatchResultValue();
       console.log("Fin del Juego");
+
+      let db = "";
+      if(this.winCounter > 0){
+        console.log("Juego ganado");
+        db = "winmatches";
+      }
+      else if(this.winCounter < 0){
+        console.log("Juego perdido");
+        db = "losematches";
+      }
+      else{
+        db = "drawmatches";
+        console.log("Juego empatado");
+      }
+        
+
       console.log(this.match);
-      this.af.database.list('matches')
-                      .push(this.match)
-                      .catch((error)=>console.log(error));
-                      
+      this.af.database.list(db)
+        .push(this.match)
+        .catch((error) => console.log(error));
+
     }
-      
+
   }
 
+
+  setMatchResultValue() {
+  }
 
   getMatchResult(): MatchResult {
     let rv: MatchResult;

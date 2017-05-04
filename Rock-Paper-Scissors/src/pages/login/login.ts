@@ -33,7 +33,8 @@ export class LoginPage implements OnInit{
 
 
   fakeSignIn(){
-    this.navCtrl.push(RegisteredUserPage,{username:"Fake user"});
+    let username = { $value : "Fake username"};
+    this.navCtrl.push(RegisteredUserPage,{username});
   }
   signIn() {
     this.hideSpinner = false;
