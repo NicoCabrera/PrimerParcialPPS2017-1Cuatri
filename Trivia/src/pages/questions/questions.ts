@@ -94,12 +94,12 @@ export class Questions implements OnInit {
 
   vibrateOnce(){
     this.vibration.vibrate(1000);
-    this.nativeAudio.play("correct").catch(error=>alert(error));
+    this.nativeAudio.play("correct").catch();
   }
 
   vibrateTwice(){
     this.vibration.vibrate([1000,1000,1000]);
-    this.nativeAudio.play("error").catch(error=>alert(error));
+    this.nativeAudio.play("error").catch();
   }
 }
 
