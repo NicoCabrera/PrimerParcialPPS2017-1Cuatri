@@ -28,7 +28,7 @@ export class LoseMatchesTab {
         }
       })
       .subscribe(matches => {
-        this.matches = matches
+        this.matches = matches.reverse()
       });
   }
 }

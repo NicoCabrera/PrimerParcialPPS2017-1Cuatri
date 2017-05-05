@@ -1,12 +1,15 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
+  <ion-navbar color="danger">
+    <ion-title text-center>
       {{title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <img src="assets/img/piedrapapeltijera.jpg" />
+  </ion-card>
   <form [formGroup]="form" padding>
     <ion-list>
       <ion-item>
@@ -19,7 +22,15 @@
       </ion-item>
     </ion-list>
     <div [hidden]="!hideSpinner">
-      <button ion-button full [disabled]="!form.valid" (click)="fakeSignIn()">Ingresar</button>
+      <ion-grid>
+        <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+            <button ion-button [disabled]="!form.valid" (click)="signIn()" outline round color="danger">Ingresar</button>
+          </ion-col>
+          <ion-col></ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
     <div [hidden]="hideSpinner">
       <div>
@@ -29,11 +40,21 @@
         <p>Validando la información enviada. Espere por favor.</p>
       </div>
     </div>
-    <div padding>
-    </div>
-    <div padding>
-      <button ion-button color="secondary" full (click)="signUp()">Registrate</button>
-      <button ion-button full (click)="showAboutPage()">About</button>
-    </div>
+    <ion-grid>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <button ion-button color="secondary" (click)="signUp()" outline round>Registrate</button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col></ion-col>
+        <ion-col>
+          <button ion-button color="primary" (click)="showAboutPage()" outline round>About</button>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
   </form>
 </ion-content>

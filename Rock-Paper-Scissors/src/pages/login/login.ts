@@ -12,13 +12,13 @@ import { AngularFire } from "angularfire2";
 
 
 @Component({
-  selector: 'page-home',
+  selector: 'login-home',
   templateUrl: 'login.html'
 })
 export class LoginPage implements OnInit{
 
   form: FormGroup;
-  title: string = 'Login';
+  title: string = 'Piedra Papel o Tijera';
   hideSpinner: boolean = true;
   constructor(public navCtrl: NavController, private fb: FormBuilder, private toastCtrl: ToastController,private _auth: AuthService, private af:AngularFire) {
   }
@@ -32,10 +32,6 @@ export class LoginPage implements OnInit{
   }
 
 
-  fakeSignIn(){
-    let username = { $value : "Fake username"};
-    this.navCtrl.push(RegisteredUserPage,{username});
-  }
   signIn() {
     this.hideSpinner = false;
     let message: string = "";

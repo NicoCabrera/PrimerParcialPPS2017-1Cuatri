@@ -22,7 +22,7 @@ export class DrawMatchesTab {
         }
       })
       .subscribe(matches => {
-        this.matches = matches
+        this.matches = matches.reverse()
       });
   }
 

@@ -1,13 +1,63 @@
 <ion-header>
 
+    <ion-navbar color="primary">
+        <ion-title>{{"Match " + numberOfMatch + "/4"}}</ion-title>
+    </ion-navbar>
+
 </ion-header>
-
-
 <ion-content padding>
-
-<button ion-button (click)="setUserChosenOption(myOptions.Rock)" [disabled]="disabledControl">Piedra</button>
-<button ion-button (click)="setUserChosenOption(myOptions.Paper)" [disabled]="disabledControl">Papel</button>
-<button ion-button (click)="setUserChosenOption(myOptions.Scissor)" [disabled]="disabledControl">Tijera</button>
-<button ion-button color="secondary" (click)="playMatch()" [disabled]="disabledControl">Listo</button>
-
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-list>
+                    <ion-item color="primary">
+                        <ion-icon name="checkmark" item-left></ion-icon>
+                        Win
+                        <ion-badge item-right>{{wins}}</ion-badge>
+                    </ion-item>
+                </ion-list>
+            </ion-col>
+            <ion-col>
+                <ion-item color="danger">
+                    <ion-icon name="close" item-left></ion-icon>
+                    Lose
+                    <ion-badge item-right color="danger">{{losses}}</ion-badge>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <ion-card>
+                    <img [src]="imageForUserBySelectedOption">
+                </ion-card>
+            </ion-col>
+            <ion-col>
+                <ion-card>
+                    <img [src]="imageForComputerByRandomOption">
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <div [hidden]="hideContinueButton">
+        <ion-card-content text-center>
+            {{resultMessage}}
+        </ion-card-content>
+        <button [disabled]="disabledContinueButton" ion-button full color="danger" (click)="continueMatch()">Continuar</button>
+        <div padding></div>
+        <ion-card-content text-center>
+            {{finalResultMessage}}
+        </ion-card-content>
+        <ion-card>
+        </ion-card>
+    </div>
+    <div [hidden]="!hideContinueButton">
+        <button ion-button block (click)="setUserChosenOption(myOptions.Rock)" [disabled]="disabledControl">Piedra</button>
+        <button ion-button block (click)="setUserChosenOption(myOptions.Paper)" [disabled]="disabledControl">Papel</button>
+        <button ion-button block (click)="setUserChosenOption(myOptions.Scissor)" [disabled]="disabledControl">Tijera</button>
+        <div [hidden]="hideReadyButton">
+            <button ion-button block color="secondary" (click)="playMatch()" [disabled]="disabledControl">Listo</button>
+        </div>
+    </div>
 </ion-content>

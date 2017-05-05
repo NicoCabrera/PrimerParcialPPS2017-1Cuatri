@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Match } from "../../app/entities/match";
 import { NavController, NavParams } from "ionic-angular";
 import { AngularFire } from "angularfire2";
-import { MatchResultPipe } from "../../pipes/match-result";
 @Component({
   selector: 'win-matches-tab',
   templateUrl: 'win-matches-tab.html'
@@ -21,7 +20,7 @@ export class WinMatchesTab implements OnInit {
         }
       })
       .subscribe(matches => {
-        this.matches = matches
+        this.matches = matches.reverse()
       });
   }
 
