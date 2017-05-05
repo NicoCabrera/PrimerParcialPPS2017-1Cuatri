@@ -12,8 +12,14 @@ import { RegisteredUserPage } from "../pages/registered-user-page/registered-use
 import { MatchPage } from "../pages/match-page/match-page";
 import { HistoricalResultsPage } from "../pages/historical-results-page/historical-results-page";
 
+import { WinMatchesTab } from "../components/win-matches-tab/win-matches-tab";
+import { DrawMatchesTab } from "../components/draw-matches-tab/draw-matches-tab";
+import { LoseMatchesTab } from "../components/lose-matches-tab/lose-matches-tab";
+
 import { AngularFireModule } from 'angularfire2';
 import { AuthService } from '../providers/auth-service';
+import { MatchResultPipe } from "../pipes/match-result";
+import { OptionsPipe } from "../pipes/options";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCAHVBAzEAetcrhm5vlUYPsoAL2u2PyfzM",
@@ -33,7 +39,12 @@ export const firebaseConfig = {
     SignUpPage,
     RegisteredUserPage,
     MatchPage,
-    HistoricalResultsPage
+    HistoricalResultsPage,
+    WinMatchesTab,
+    LoseMatchesTab,
+    DrawMatchesTab,
+    MatchResultPipe,
+    OptionsPipe
   ],
   imports: [
     BrowserModule,
@@ -48,7 +59,10 @@ export const firebaseConfig = {
     SignUpPage,
     RegisteredUserPage,
     MatchPage,
-    HistoricalResultsPage
+    HistoricalResultsPage,
+    WinMatchesTab,
+    LoseMatchesTab,
+    DrawMatchesTab
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-card *ngFor="let match of matches">
+    <ion-card-header>
+      {{ match.username + " Fecha: " + match.date}}
+    </ion-card-header>
+
+    <ion-list *ngFor="let game of match.games">
+      <ion-item>{{game.computerRandomOption | options}}</ion-item>
+      <ion-item>{{game.userChosenOption | options}}</ion-item>
+      <ion-item>{{game.result | MatchResultPipe }}</ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

@@ -7,12 +7,16 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>HistoricalResultsPage</ion-title>
+    <ion-title>Historial de Partidas</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <ion-tabs>
+    <ion-tab tabTitle="Victorias" [root]="tab1"></ion-tab>
+    <ion-tab tabTitle="Derrotas" [root]="tab2"></ion-tab>
+    <ion-tab tabTitle="Empates" [root]="tab3"></ion-tab>
+  </ion-tabs>`
 </ion-content>
