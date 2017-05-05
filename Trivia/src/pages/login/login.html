@@ -1,12 +1,24 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>
+    <ion-title text-center>
       {{title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col>
+        <ion-card>
+          <img src="assets/img/trivialogo.png" />
+        </ion-card>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
   <form [formGroup]="form" padding>
     <ion-list>
       <ion-item>
@@ -19,7 +31,7 @@
       </ion-item>
     </ion-list>
     <div [hidden]="!hideSpinner">
-      <button ion-button full [disabled]="!form.valid" (click)="signIn()">Ingresar</button>
+      <button ion-button full [disabled]="!form.valid" (click)="signIn()" round>Ingresar</button>
     </div>
     <div [hidden]="hideSpinner">
       <div>
@@ -32,8 +44,8 @@
     <div padding>
     </div>
     <div padding>
-      <button ion-button color="secondary" full (click)="signUp()">Registrate</button>
-      <button ion-button full (click)="showAboutPage()">About</button>
+      <button ion-button color="secondary" full (click)="signUp()" round>Registrate</button>
+      <button ion-button full (click)="showAboutPage()" round>About</button>
     </div>
   </form>
 </ion-content>

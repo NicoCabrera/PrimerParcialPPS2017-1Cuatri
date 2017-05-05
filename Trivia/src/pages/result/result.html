@@ -8,15 +8,13 @@
 </ion-header>
 <ion-content padding>
 <ion-card>
-  <ion-card-header>
+  <ion-card-header text-center>
     RESULTADO
   </ion-card-header>
-  <ion-list>
-    <ion-icon ion-item name="checkmark"></ion-icon>
-    {{"Correctas: " + correctAnswers}}
-    <ion-icon ion-item name="close"></ion-icon>
-    {{"Incorrectas: " + incorrectAnswers}}
-  </ion-list>
+  <ion-card-content>
+    <p><ion-icon ion-item name="checkmark"><div class="little-margin">{{"Correctas: " + correctAnswers}}</div></ion-icon></p>
+    <p><ion-icon ion-item name="close"><div class="little-margin">{{"Incorrectas: " + incorrectAnswers}}</div></ion-icon></p>
+  </ion-card-content>
 </ion-card>
-<button ion-button full  (click)="backToRegisteredUser()">Regresar al menú</button>
+<button ion-button full  (click)="backToRegisteredUser()" round>Regresar al menú</button>
 </ion-content>

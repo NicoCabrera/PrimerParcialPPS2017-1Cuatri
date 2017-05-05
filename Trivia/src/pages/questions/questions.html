@@ -2,13 +2,22 @@
 </ion-header>
 <ion-content padding>
     <ion-card>
-        {{question.text}}
+        <ion-card-content text-center>
+            {{question.text}}
+        </ion-card-content>
     </ion-card>
-    <button [disabled]="isDisabled" (click)="sendAnswer(answer)" ion-button block color="primary" *ngFor="let answer of answers">{{answer.text}}</button>
-    <div *ngIf="showWrongAnswerMessage">
-        Incorrecto!
+    <div padding>
     </div>
-    <div *ngIf="showRightAnswerMessage">
-        Correcto!
-    </div>
+    <button [disabled]="isDisabled" (click)="sendAnswer(answer)" ion-button block color="primary" *ngFor="let answer of answers"
+        round>{{answer.text}}</button>
+    <ion-card *ngIf="showRightAnswerMessage">
+        <ion-card-content>
+            Correcto!
+        </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="showWrongAnswerMessage">
+        <ion-card-content>
+            Incorrecto!
+        </ion-card-content>
+    </ion-card>
 </ion-content>

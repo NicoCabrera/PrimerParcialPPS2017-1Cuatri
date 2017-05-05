@@ -17,7 +17,7 @@ import { AngularFire } from "angularfire2";
 })
 @Component({
   selector: 'login-home',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
 })
 export class LoginPage implements OnInit {
 

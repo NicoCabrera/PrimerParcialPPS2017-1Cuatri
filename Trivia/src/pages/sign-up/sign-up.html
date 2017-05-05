@@ -30,7 +30,7 @@
       </ion-item>
     </ion-list>
     <div padding [hidden]="disabledFormControl">
-      <button [disabled]="!form.valid" ion-button color="secondary" full (click)="signUp()">Registrarse</button>
+      <button [disabled]="!form.valid" ion-button color="secondary" full (click)="signUp()" round>Registrarse</button>
     </div>
   </form>
   <div [hidden]="hideSpinner">

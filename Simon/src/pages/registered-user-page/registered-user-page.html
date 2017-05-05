@@ -1,0 +1,12 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title><ion-icon name="person"></ion-icon> {{username}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+  <button ion-button full (click)="showMatchPage()">Comenzar</button>
+  <button ion-button full (click)="showHistoricalResults()">Ver las últimas respuestas ingresadas</button>
+  <button ion-button full (click)="logOutOnClick()">Desloguearse</button>
+</ion-content>

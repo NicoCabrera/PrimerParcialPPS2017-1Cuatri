@@ -1,3 +1,10 @@
-page-questions {
-
+.ios, .md{
+    page-questions {
+        ion-card-content{
+            font-size: 1.2em;
+        }
+        ion-content{
+            margin:60px auto;
+        }
+    }
 }

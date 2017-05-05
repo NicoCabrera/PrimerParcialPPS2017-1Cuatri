@@ -1,3 +1,14 @@
-page-result {
-
+.ios, .md{
+    page-result {
+        ion-card-header{
+            background-color: #015747;
+            color:white;       
+        }
+        p{
+            text-align: center;
+        }
+        .little-margin{
+            margin-left: 60px;
+        }
+    }
 }

@@ -6,13 +6,27 @@
 -->
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title><ion-icon name="person"></ion-icon> {{username}}</ion-title>
+    <ion-title>
+      <ion-icon name="person"></ion-icon> {{username}}</ion-title>
   </ion-toolbar>
 </ion-header>
-
-
 <ion-content padding>
-  <button ion-button full (click)="showQuestionsPage()">Comenzar</button>
-  <button ion-button full (click)="showHistoricalResults()">Ver las últimas respuestas ingresadas</button>
-  <button ion-button full (click)="logOutOnClick()">Desloguearse</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-content>
+            Me alegra verte por aquí <span class="destacado">{{username}}</span>  ! <br>
+            Puedes comenzar a jugar o ver los resultados anteriores.
+            <img src="assets/img/dr.png" />
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <button ion-button full (click)="showQuestionsPage()" round>Comenzar</button>
+      <button ion-button full (click)="showHistoricalResults()" round>Ver últimas respuestas ingresadas</button>
+      <button ion-button full (click)="logOutOnClick()" round>Desloguearse</button>
+    </ion-row>
+  </ion-grid>
 </ion-content>

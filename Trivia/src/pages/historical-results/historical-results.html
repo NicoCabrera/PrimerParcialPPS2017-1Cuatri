@@ -15,13 +15,12 @@
 
 <ion-content padding>
   <ion-card *ngFor="let match of matches">
-    <ion-card-header>
+    <ion-card-header text-center>
       {{"Usuario: " + match.username}}
     </ion-card-header>
-
-    <ion-list *ngFor="let question of match.results">
-      <ion-item>{{question.text}}</ion-item>
-      <ion-item>{{question.answer}}</ion-item>
-    </ion-list>
+    <ion-card-content *ngFor="let question of match.results">
+        <p class="questionstyle" text-center>{{question.text}}</p>
+        <p class="answerstyle" text-center>{{question.answer}}</p>
+    </ion-card-content>
   </ion-card>
 </ion-content>
