@@ -1,26 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
-import { AuthService } from "../../providers/auth-service";
-import { MatchPage } from "../match-page/match-page";
-import { HistoricalResultsPage } from "../historical-results-page/historical-results-page";
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @IonicPage()
 @Component({
   selector: 'page-registered-user',
   templateUrl: 'registered-user-page.html',
 })
-export class RegisteredUserPage {
-  username:string;
+export class RegisteredUserPage implements OnInit {
+  username: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl:ToastController,private _auth: AuthService) {
-    this.username = this.navParams.get("username").$value;
+
+  ngOnInit(): void {
+    this.nativeAudio.preloadSimple('hadoken', 'assets/sound/hadoken.mp3');
+    this.nativeAudio.preloadSimple("shoryuken","assets/sound/shoryuken.mp3");
+    this.nativeAudio.preloadSimple("sonicboom","assets/sound/sonicboom.mp3");
+    this.nativeAudio.preloadSimple("tatsumakisenpukyaku","assets/sound/tatsumakisenpukyaku.mp3");
+
+  }
+
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private toastCtrl: ToastController, private nativeAudio: NativeAudio) {
+    this.username = this.navParams.get("username");
   }
 
   ionViewDidLoad() {
-    
+
   }
 
-  showInProgressMessage():void{
+  showInProgressMessage(): void {
     let toast = this.toastCtrl.create({
       message: 'Work in progress',
       duration: 3000,
@@ -29,18 +37,21 @@ export class RegisteredUserPage {
     toast.present();
   }
 
-  showMatchPage(){
-    this.navCtrl.push(MatchPage,{username:this.username});
+  ataque1() {
+    this.nativeAudio.play("hadoken");
+  }
+  ataque2() {
+    this.nativeAudio.play("shoryuken");
+  }
+  ataque3() {
+    this.nativeAudio.play("sonicboom");
+  }
+  ataque4() {
+    this.nativeAudio.play("tatsumakisenpukyaku");
   }
 
-  showHistoricalResults(){
-    this.navCtrl.push(HistoricalResultsPage);
-  }
-
-  logOutOnClick()
-  { 
+  logOutOnClick() {
     this.navCtrl.popToRoot();
-    this._auth.signOut();
   }
 }
 

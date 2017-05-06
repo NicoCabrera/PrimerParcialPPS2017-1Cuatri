@@ -1,12 +1,19 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title><ion-icon name="person"></ion-icon> {{username}}</ion-title>
+    <ion-title>
+      <ion-icon name="person"></ion-icon> {{username}}</ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="logOutOnClick()">
+        <ion-icon name="log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-  <button ion-button full (click)="showMatchPage()">Comenzar</button>
-  <button ion-button full (click)="showHistoricalResults()">Ver las últimas respuestas ingresadas</button>
-  <button ion-button full (click)="logOutOnClick()">Desloguearse</button>
+  <button ion-button full outline (click)="ataque1()">Ataque 1</button>
+  <button ion-button full outline (click)="ataque2()">Ataque 2</button>
+  <button ion-button full outline (click)="ataque3()">Ataque 3</button>
+  <button ion-button full outline (click)="ataque4()">Ataque 4</button>
 </ion-content>
