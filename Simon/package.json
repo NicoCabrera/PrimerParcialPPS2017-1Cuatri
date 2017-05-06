@@ -23,6 +23,7 @@
     "@ionic-native/native-audio": "^3.6.1",
     "@ionic-native/splash-screen": "3.4.2",
     "@ionic-native/status-bar": "3.4.2",
+    "@ionic-native/vibration": "^3.6.1",
     "@ionic/storage": "2.0.1",
     "angularfire2": "^4.0.0-rc.0",
     "firebase": "^3.9.0",

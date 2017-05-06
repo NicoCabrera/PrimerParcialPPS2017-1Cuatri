@@ -12,8 +12,20 @@
 
 
 <ion-content padding>
-  <button ion-button full outline (click)="ataque1()">Ataque 1</button>
-  <button ion-button full outline (click)="ataque2()">Ataque 2</button>
-  <button ion-button full outline (click)="ataque3()">Ataque 3</button>
-  <button ion-button full outline (click)="ataque4()">Ataque 4</button>
+  <button ion-button full outline (click)="listen()" [disabled]="disabledListenButton">Escuchar</button>
+  <div padding></div>
+  <button ion-button full outline (click)="ataque1()" [disabled]="disabledButtons"><img src="assets/img/hadokenryu.jpg"></button>
+  <button ion-button full outline (click)="ataque2()" [disabled]="disabledButtons"><img src="assets/img/ken.jpg"></button>
+  <button ion-button full outline (click)="ataque3()" [disabled]="disabledButtons"><img src="assets/img/guile.jpg"></button>
+  <button ion-button full outline (click)="ataque4()" [disabled]="disabledButtons"><img src="assets/img/ryujpg.jpg"></button>
+  <div [hidden]="hideCongratulation">
+    <ion-card>
+    <ion-card-header text-center>Patrón correcto! Buen oido!</ion-card-header>
+  </ion-card>
+  </div>
+  <div [hidden]="hideBetterLuckNexTime">
+    <ion-card>
+    <ion-card-header text-center>Patrón incorrecto! Escucha una vez más</ion-card-header>
+  </ion-card>
+  </div>
 </ion-content>

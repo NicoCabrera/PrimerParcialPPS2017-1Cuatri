@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { Vibration } from '@ionic-native/vibration';
 
 import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
@@ -33,6 +34,7 @@ import { RegisteredUserPage } from "../pages/registered-user-page/registered-use
     StatusBar,
     SplashScreen,
     NativeAudio,
+    Vibration,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
